@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 TRACKER</title>
+    <link href="./assets/bootstrap.min.css" rel="stylesheet">
+    <script src="./assets/jquery.min.js"></script>
+    <script src="./assets/bootstrap.min.js"></script>
+    <script src="./assets/QA/test.js"></script>
+    
+    
+    <script>
+        
+    </script>
+
+</head>
+
+<body>
+    <!--    nav bar -->
+    <div id="nav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">COVID-19</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" id="home" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="images" href="#">Memes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="que" href="#">Questions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="about" href="#">About</a>
+                    </li>
+                </ul>
+                <span id="udate"></span>
+                <span id="dis"></span>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Body -->
+
+
+
+    <div id='tab' class="container col-lg-8 mt-4">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" id="countries" href="#">Countries</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="isw" data-toggle="tab" href="">India (State Wise)</a>
+            </li>
+        </ul>
+    </div>
+    <!--    card section    -->
+    <div id="card" class="container col-lg-8 mt-4 ">
+        <div id="ca" class="row"></div>
+    </div>
+    <!--    States  -->
+    <div id="states" style="display: none;" class="container col-lg-8 mt-4 ">
+        <div id="st" class="row"></div>
+    </div>
+    <!--    Memes   -->
+    <div id="memes" style="display: none;" class="container col-lg-8 col-md-4 col-sm-3 mt-4 "></div>
+    <!--    Quiz    -->
+    <div id="qlist"  style="display: none;"  class="container col-lg-8 mt-4"></div>
+    <!--    ABOUT -->
+    <div id="aboutall"  style="display: none;"  class="container col-lg-8 mt-4 about">
+        <div class="card mb-3 jumbotron">
+            <h3 class="card-header text-danger">COVID-19</h3>
+            <div class="card-body">
+                <h5 class="card-title text-info">Stay Home Stay Safe</h5>
+                <h6 class="card-subtitle text-muted">Let's stand together aginst COVID-19</h6>
+            </div>
+            <img style="height: 200px; width: 100%; display: block;"
+                src="https://2.bp.blogspot.com/-PrmMFr69CUU/UeQ9JGB2_XI/AAAAAAAACkw/uza9MQY-FOY/s320/ana_logo.JPG"
+                alt="Card image">
+            <div class="card-body">
+                <p class="card-text">The motive of this site to track and provide information to the public.</p>
+            </div>
+            <div class="card-body">
+                <p> Visit:</p>
+                <a href="http://anacollege.org">ANA GROUP OF INSTITUTIONS</a>
+            </div>
+        </div>
+        <div class="card jumbotron">
+            <div class="card-body">
+                <h4 class="card-title text-info" style="text-decoration: underline;">Developer</h4>
+                <h5 class="card-subtitle mb-2 mt-4">Rishabh Singh</5>
+                    <h6 class="card-subtitle mb-2 text-muted">Full Stack Developer</h6>
+                    <p class="card-text">Hi there !!</p>
+                    <p class="card-text">I am very glad to welcome you to this COVID-19 Tracker. this is a sample work
+                        and also my college project (<a href="anacollege.org">ANA Group of Institutions</a>).
+                        <p class="card-text">For Freelancing or regarding any query just <a
+                                href="mailto:rishmark98@gmail.com">mail me</a></p>
+                    </p>
+                    <p class="card-text">Let' catch up at Instagram</p>
+                    <a href="https://instagram.com/codeddevil" class="card-link text-success">CodedDevil</a>
+                    <a href="https://instagram.com/rishthekingboy" class="card-link text-success">Rishabh Singh</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // add countries....
+        $(document).ready(function () {
+          
+            $.get('https://api.covid19api.com/summary',function(x,s){
+                for (i = 0; i <= x.Countries.length; i++) {
+            $("#ca").append(' <div class="card border-dark mt-2 ml-4 col-md-3 col-lg-3 col-sm-4" style="max-width: 20rem;"><div class="card-header" id="head">' + x.Countries[i].Country + '</div><div class="card-body"><p id="infected" class="card-text text-primary">TotalConfirmed :    ' + '  ' + x.Countries[i].TotalConfirmed + '</p><p id="infected" class="card-text text-primary">NewConfirmed :    ' + '  ' + x.Countries[i].NewConfirmed + '</p><p id="infected" class="card-text text-danger">TotalDeaths :    ' + '  ' + x.Countries[i].TotalDeaths + '</p><p id="infected" class="card-text text-danger">NewDeaths :    ' + '  ' + x.Countries[i].NewDeaths + '</p><p id="infected" class="card-text text-success">TotalRecovered :    ' + '  ' + x.Countries[i].TotalRecovered + '</p><p id="infected" class="card-text text-success">NewRecovered : ' + '  ' + x.Countries[i].NewRecovered + '</p></div></div>');
+        }
+               });
+           })
+       
+        
+    </script>
+    <script>
+        // add states....
+        $(document).ready(function () {
+          
+          $.get('http://api.apify.com/v2/datasets/58a4VXwBBF0HtxuQa/items',function(item,s){
+            for (l = 0; l <= item[item.length-1].regionData.length; l++) {  
+            $("#st").append(' <div class="card border-dark mt-2 ml-4 col-md-3 col-lg-3 col-sm-4" style="max-width: 20rem;"><div class="card-header" id="head">' + item[item.length-1].regionData[l].region + '</div><div class="card-body"><p id="infected" class="card-text text-warning">Total Infected :    ' + '  ' + item[item.length-1].regionData[l].totalInfected + '</p><p id="infected" class="card-text text-success">recovered :    ' + '  ' + item[item.length-1].regionData[l].recovered + '</p><p id="infected" class="card-text text-danger">Deceased :    ' + '  ' + item[item.length-1].regionData[l].deceased + '</p></div></div>');
+        }
+             });
+         })
+        
+    </script>
+    </script>
+    <script>
+         //Quize...
+           for(j=0;j<=data.length;j++){
+            $("#qlist").append('<div class="jumbotron"><b><p class="display-6 text-dark">' + data[j].Q + '</p></b><i><p>' + data[j].A + '</p></i></div></div><hr>');
+        }
+    </script>
+    <script>
+        //Memes...
+          for(k=1;k<=30;k++){
+           $("#memes").append('<div class="card mb-2"><img src="./who/'+k+'.png"  class="card-body"></div>');
+       }
+   </script>
+   <script>
+    //Updated date time...
+    $.get('https://api.covid19api.com/summary',function(x,s){
+        $("#udate").append('<p class="text-white" style="font-size:8px">Updated at '+x.Countries[34].Date + '</p>');
+               });
+       
+</script>
+    <script>
+    $(document).ready(()=>{
+        $('#about').click(() => {
+            $('#tab,#card').css({"display":"none"});
+            $('#aboutall').css({"display":"block"});
+            $('#qlist').css({"display":"none"});
+            $('#states').css({"display":"none"});
+            $('#memes').css({"display":"none"});
+        })
+        $('#que').click(() => {
+            $('#tab,#card').css({"display":"none"});
+            $('#aboutall').css({"display":"none"});
+            $('#qlist').css({"display":"block"});
+            $('#states').css({"display":"none"});
+            $('#memes').css({"display":"none"});
+        })
+        $('#isw').click(() => {
+                $('#tab,#ddown,#states').css({"display":"block"});
+                $('#card').css({"display":"none"});
+                $('#memes').css({"display":"none"});
+                $('#udate').css({"display":"none"});
+                $.get('http://api.apify.com/v2/datasets/58a4VXwBBF0HtxuQa/items',function(item,s){
+                    $("#dis").append('<p class="text-white" style="font-size:8px">Updated at '+item[item.length-1].lastUpdatedAtApify + '</p>');
+                
+             });
+         
+
+            });
+        $('#countries').click(() => {
+            $('#tab,#card').css({"display":"block"});
+            $('#states').css({"display":"none"});
+            });
+
+        $('#home').click(() => {
+            $('#tab,#card').css({"display":"block"});
+            $('#aboutall').css({"display":"none"});
+            $('#qlist').css({"display":"none"});
+            $('#memes').css({"display":"none"});
+        })
+        $('#images').click(() => {
+            $('#tab,#card').css({"display":"none"});
+            $('#aboutall').css({"display":"none"});
+            $('#qlist').css({"display":"none"});
+            $('#states').css({"display":"none"});
+            $('#memes').css({"display":"block"});
+        });
+    });
+    </script>
+
+</body>
+
+</html>
